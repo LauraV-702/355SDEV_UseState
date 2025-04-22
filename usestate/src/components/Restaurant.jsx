@@ -22,7 +22,23 @@ function Restaurant(props) {
       </ul>
       <button onClick={handleHours}>Hours</button>
       <button onClick={handleMenu}>Menu</button>
-
+      {menu && (
+        <ul>
+          {props.restaurant.menu.map((menuItem, index) => (
+            <li key={index}>{`${menuItem.item} $${menuItem.price}`}</li>
+          ))}
+        </ul>
+      )}
+      {hours && (
+        <ul>
+          {Object.entries(props.restaurant.hours).map(([day, time]) => (
+            <li key={day}>
+              <strong>{day.charAt(0).toUpperCase() + day.slice(1)}:</strong>{" "}
+              {time}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
